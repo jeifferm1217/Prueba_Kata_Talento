@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mis Notas</title>
+  <link rel="stylesheet" href="notas.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <h1>Mis Notas</h1>
+  <button onclick="logout()">Cerrar sesión</button>
+
+  <div>
+    <input type="text" id="tituloNota" placeholder="Título de la nota">
+    <textarea id="contenidoNota" placeholder="Escribe en Markdown"></textarea>
+    <button onclick="guardarNota()">Guardar Nota</button>
+  </div>
+
+  <div id="listaNotas"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
