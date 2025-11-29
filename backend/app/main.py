@@ -1,20 +1,25 @@
 from fastapi import FastAPI
-from db.database import Base, engine
-from routers import auth, usuarios, notas
+from app.routers import Ordenes
+from app.routers import Categorias, Carrito_De_Compras, Inventario, Productos
+from app.db.database import engine, Base
+from app.routers import auth, usuarios
 
-# Crear las tablas en la base de datos (si no existen)
+# Crear tablas
 Base.metadata.create_all(bind=engine)
 
-# Instancia de FastAPI
 app = FastAPI(
-    title="Notas con Markdown",
+    title="tienda_musical_api",
     version="1.0.0"
 )
 
-# Incluir routers
+# Routers
+app.include_router(usuarios.router)  # <-- SIN PREFIX AQUÍ
 app.include_router(auth.router)
-app.include_router(usuarios.router)
-app.include_router(notas.router)
+app.include_router(Categorias.router)
+app.include_router(Productos.router)
+app.include_router(Inventario.router)
+app.include_router(Carrito_De_Compras.router)
+app.include_router(Ordenes.router)
 
 if __name__ == "__main__":
     import uvicorn
